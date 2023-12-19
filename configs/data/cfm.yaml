@@ -1,0 +1,6 @@
+_target_: src.data.single_cell_datamodule.SingleCellDataModule
+data_dir: ${paths.data_dir}
+batch_size: 128
+name: "klein"
+task: "zero_four_dropout"
+num_samples: None

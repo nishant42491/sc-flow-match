@@ -1,0 +1,28 @@
+_target_: src.models.cfm_module.CFMLitModule
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.0003
+  weight_decay: 1e-5
+
+scheduler:
+    _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+    _partial_: true
+    T_max: ${trainer.max_epochs}
+    eta_min: 1e-6
+
+
+net:
+  _target_: src.models.components.transformer_encoder.TransformerAutoencoder
+  input_dim: 2048
+  output_dim: 2048
+  embed_dim: 2048
+  time_dim: 128
+  n_heads: 1
+  num_layers: 1
+
+flow_matcher:
+  _target_: torchcfm.conditional_flow_matching.ConditionalFlowMatcher
+  sigma: 0.0
+
