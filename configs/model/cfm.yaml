@@ -18,9 +18,10 @@ net:
   input_dim: 2048
   output_dim: 2048
   embed_dim: 2048
-  time_dim: 128
+  time_dim: 512
   n_heads: 1
   num_layers: 1
+  dropout: 0.1
 
 flow_matcher:
   _target_: torchcfm.conditional_flow_matching.ConditionalFlowMatcher

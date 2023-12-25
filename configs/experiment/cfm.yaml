@@ -18,8 +18,8 @@ seed: 12345
 
 trainer:
   min_epochs: 10
-  max_epochs: 2000
-  gradient_clip_val: 0.5
+  max_epochs: 4500
+  gradient_clip_val: 0.75
   accelerator: "gpu"
 
 

@@ -96,9 +96,12 @@ class TransformerAutoencoder(nn.Module):
         )
         self.decoder = Decoder(embed_dim, output_dim)
 
-    def forward(self, t, x, args=None, kwargs=None):
-        if t.dim() == 0:
-            t = t.repeat(x.shape[0])
+    def forward(self, t, x, args=None, kwargs=None, tr=False):
+
+        if not tr:
+
+            if t.dim() == 0 or t.dim() == 1:
+                t = t.repeat(x.shape[0])
 
 
         encoded = self.encoder(x)

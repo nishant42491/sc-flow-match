@@ -38,7 +38,7 @@ class CFMLitModule(LightningModule):
         """Computes the loss on a batch of data."""
         x0, x1 = self.preprocess_batch(batch, training)
         t, xt, ut = self.flow_matcher.sample_location_and_conditional_flow(x0, x1)
-        vt = self.net(t, xt)
+        vt = self.net(t, xt, tr=True)
         return torch.nn.functional.mse_loss(vt, ut)
 
     def training_step(self, batch: Any, batch_idx: int):
