@@ -17,15 +17,15 @@ tags: ["singlecell", "simple_dense_net"]
 seed: 12345
 
 trainer:
-  min_epochs: 10
-  max_epochs: 4500
+  min_epochs: 1
+  max_epochs: 2500
   gradient_clip_val: 0.75
   accelerator: "gpu"
 
 
 
 data:
-  batch_size: 128
+  batch_size: 64
   name: "klein"
   task: "zero_four_dropout"
   num_samples:
