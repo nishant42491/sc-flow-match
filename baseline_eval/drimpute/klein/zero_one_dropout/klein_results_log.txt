@@ -1,0 +1,4 @@
+Dataset: klein
+RMSE: 0.308463264176267
+Cosine_Similarity: 0.8792441063551923
+L1_Distance: 0.15877054890047274

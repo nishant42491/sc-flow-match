@@ -42,11 +42,6 @@ if __name__ == "__main__":
         for task in task_list:
             get_magic_output(name,task)
 
-'''m = magic.MAGIC()
-data = pd.read_csv('split_data/train/klein/zero_four_dropout/klein.csv')
-data_magic = m.fit_transform(data)
-df = pd.DataFrame(data_magic)
-df.to_csv('magic_results/klein/zero_four_dropout/klein_magic_out.csv', index=False)'''
 
 
 
