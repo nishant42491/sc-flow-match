@@ -1,5 +1,0 @@
-Dataset: ziesel
-RMSE: 0.27828931494422154
-Cosine Similarity:
-0.8917582278386875
-L1 Distance: 0.09011691910165062

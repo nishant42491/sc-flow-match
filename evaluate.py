@@ -43,10 +43,10 @@ def compute_scores(original_csv, resultant_csv,dataset_name, dropout_eval_name):
     # Prepare the results in a log string
     log = f"Dataset: {dataset_name}\n"
     log += f"RMSE: {rmse}\n"
-    log += f"Cosine Similarity:\n{cos_similarity}\n"
-    log += f"L1 Distance: {mean_l1_error}\n"
+    log += f"Cosine_Similarity: {cos_similarity}\n"
+    log += f"L1_Distance: {mean_l1_error}\n"
 
-    save_dir = f'eval_ouput/{dataset_name}/{dropout_eval_name}/{dataset_name}_results_log.txt'
+    save_dir = f'eval_output/{dataset_name}/{dropout_eval_name}/{dataset_name}_results_log.txt'
     Path(save_dir).parent.mkdir(parents=True, exist_ok=True)
     # Write results to a text file
     with open(save_dir, "w") as file:
