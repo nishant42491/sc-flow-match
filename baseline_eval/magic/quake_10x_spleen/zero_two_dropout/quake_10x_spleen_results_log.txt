@@ -1,0 +1,4 @@
+Dataset: quake_10x_spleen
+RMSE: 0.30372486107607627
+Cosine_Similarity: 0.763613804115227
+L1_Distance: 0.12157760221166973

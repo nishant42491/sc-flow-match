@@ -1,0 +1,4 @@
+Dataset: quake_smart-seq2_diaphragm
+RMSE: 1.1666669836717036
+Cosine_Similarity: 0.5241744267375753
+L1_Distance: 0.3893386591309616

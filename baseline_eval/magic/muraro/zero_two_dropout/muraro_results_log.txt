@@ -1,0 +1,4 @@
+Dataset: muraro
+RMSE: 0.6102434339906394
+Cosine_Similarity: 0.7526250861123895
+L1_Distance: 0.32110208623048475

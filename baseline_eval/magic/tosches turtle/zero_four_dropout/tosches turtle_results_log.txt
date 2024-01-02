@@ -1,0 +1,4 @@
+Dataset: tosches turtle
+RMSE: 0.2801416350504934
+Cosine_Similarity: 0.6141580082263157
+L1_Distance: 0.09977897828071104

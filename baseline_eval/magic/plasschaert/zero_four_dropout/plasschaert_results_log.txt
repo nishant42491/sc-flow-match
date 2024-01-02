@@ -1,0 +1,4 @@
+Dataset: plasschaert
+RMSE: 0.35355137143106546
+Cosine_Similarity: 0.6927137996733406
+L1_Distance: 0.14795006533353305

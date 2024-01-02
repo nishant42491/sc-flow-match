@@ -1,0 +1,3 @@
+Dataset: quake_10x_bladder
+ARI: 0.9369209673940617
+NMI: 0.8995137588314234

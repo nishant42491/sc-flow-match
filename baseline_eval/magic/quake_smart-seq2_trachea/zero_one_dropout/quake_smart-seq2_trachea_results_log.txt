@@ -1,0 +1,4 @@
+Dataset: quake_smart-seq2_trachea
+RMSE: 1.0650610158293397
+Cosine_Similarity: 0.6871116126240484
+L1_Distance: 0.43421165594286654
