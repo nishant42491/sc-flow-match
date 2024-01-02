@@ -1,0 +1,4 @@
+Dataset: quake_smart-seq2_heart
+RMSE: 0.7458928707761708
+Cosine_Similarity: 0.8957248548909702
+L1_Distance: 0.2989996219596382

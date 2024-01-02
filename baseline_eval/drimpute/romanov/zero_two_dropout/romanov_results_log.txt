@@ -1,0 +1,4 @@
+Dataset: romanov
+RMSE: 0.23354472901818135
+Cosine_Similarity: 0.886860729173866
+L1_Distance: 0.08042619471919601

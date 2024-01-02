@@ -1,0 +1,4 @@
+Dataset: young
+RMSE: 0.1488494205774003
+Cosine_Similarity: 0.9117606768358874
+L1_Distance: 0.0434233678448646

@@ -1,0 +1,4 @@
+Dataset: quake_smart-seq2_lung
+RMSE: 0.7937650588590695
+Cosine_Similarity: 0.8372721324821951
+L1_Distance: 0.24159774923467553

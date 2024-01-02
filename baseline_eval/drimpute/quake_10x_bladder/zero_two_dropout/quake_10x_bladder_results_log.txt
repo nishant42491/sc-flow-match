@@ -1,0 +1,4 @@
+Dataset: quake_10x_bladder
+RMSE: 0.3789293700165589
+Cosine_Similarity: 0.8539443538917444
+L1_Distance: 0.1187532147810992

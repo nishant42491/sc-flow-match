@@ -1,0 +1,4 @@
+Dataset: quake_10x_limb_muscle
+RMSE: 0.23479203964670806
+Cosine_Similarity: 0.8750356089437991
+L1_Distance: 0.073207936214891
