@@ -1,0 +1,3 @@
+Dataset: quake_smart-seq2_trachea
+ARI: 0.9430938338255329
+NMI: 0.9061910190202793

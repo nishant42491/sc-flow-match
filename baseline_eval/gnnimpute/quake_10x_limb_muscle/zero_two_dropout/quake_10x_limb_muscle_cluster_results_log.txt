@@ -1,0 +1,3 @@
+Dataset: quake_10x_limb_muscle
+ARI: 0.9697489807013476
+NMI: 0.9529782756607444

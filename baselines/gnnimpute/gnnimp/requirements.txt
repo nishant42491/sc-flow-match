@@ -1,0 +1,5 @@
+numpy==1.19.0
+torch==1.10.1
+networkx==2.5
+scanpy==1.6.0
+leidenalg==0.8.3
