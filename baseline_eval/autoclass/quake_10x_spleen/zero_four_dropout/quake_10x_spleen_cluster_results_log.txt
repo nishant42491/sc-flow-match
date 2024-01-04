@@ -1,0 +1,3 @@
+Dataset: quake_10x_spleen
+ARI: 0.7637072417098479
+NMI: 0.731567852044105

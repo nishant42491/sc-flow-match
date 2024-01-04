@@ -1,0 +1,3 @@
+Dataset: tosches turtle
+ARI: 0.7632339127826221
+NMI: 0.8427852060910757

@@ -62,10 +62,10 @@ def create_heatmap(baselines, datasets, metric, task):
     n = len(baselines)
 
     # Adding labels and ticks
-    plt.title(f"Heatmap for {metric} ({task})")
+    plt.title(f"Heatmap for {metric}")
     plt.xlabel("Datasets")
     plt.ylabel("Baselines")
-    plt.xticks(np.arange(m), datasets, rotation=90)
+    plt.xticks(np.arange(m), datasets, rotation=75)
     plt.yticks(np.arange(n), baselines)
 
     # Adding values in cells
@@ -82,7 +82,7 @@ def create_heatmap(baselines, datasets, metric, task):
 
 if __name__ == "__main__":
 
-    baselines = ["magic", "drimpute"]
+    baselines = ["magic", "drimpute", "autoclass"]
     datasets = ["muraro",
                 "plasschaert",
                 "romanov",
@@ -96,7 +96,7 @@ if __name__ == "__main__":
                 "quake_smart-seq2_limb_muscle",
                 "quake_smart-seq2_lung",
                 "quake_smart-seq2_trachea"]
-    metric = 'NMI'
+    metric = 'ARI'
     task = 'zero_four_dropout'
 
     create_heatmap(baselines, datasets, metric, task)
