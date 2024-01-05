@@ -45,10 +45,12 @@ def get_autoclass_output(dataset_name, task_name, labels:bool = False):
 
 if __name__ == "__main__":
 
-    datasets = ['muraro','plasschaert','romanov','tosches turtle',
+    '''datasets = ['muraro','plasschaert','romanov','tosches turtle',
                     "young", "quake_10x_bladder","quake_10x_limb_muscle", "quake_10x_spleen",
                     "quake_smart-seq2_diaphragm", "quake_smart-seq2_heart", "quake_smart-seq2_limb_muscle",
-                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea", "klein", "ziesel"]
+                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea", "klein", "ziesel"]'''
+
+    datasets = ['klein','ziesel']
     tasks = ['zero_one_dropout','zero_two_dropout','zero_four_dropout']
 
     for dataset in datasets:

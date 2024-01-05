@@ -94,7 +94,7 @@ if __name__ == "__main__":
     dataset_name = ['muraro','plasschaert','romanov','tosches turtle',
                     "young", "quake_10x_bladder","quake_10x_limb_muscle", "quake_10x_spleen",
                     "quake_smart-seq2_diaphragm", "quake_smart-seq2_heart", "quake_smart-seq2_limb_muscle",
-                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea"]
+                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea", "klein", "ziesel"]
     task_name = ['zero_one_dropout','zero_two_dropout','zero_four_dropout']
     output_dir = './outputs'
     for name in dataset_name:

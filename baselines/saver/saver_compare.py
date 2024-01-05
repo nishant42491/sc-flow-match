@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import median_absolute_error
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
 import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
 from pathlib import Path
 import numpy as np
@@ -17,6 +18,16 @@ def cos_sim(a, b):
     x = np.linalg.norm(a)
     y = np.linalg.norm(b)
     return z/(x*y)
+
+def pearsonr_error(y, h):
+    res = []
+    if len(y.shape) < 2:
+        y = y.reshape((1, -1))
+        h = h.reshape((1, -1))
+
+    for i in range(y.shape[0]):
+        res.append(pearsonr(y[i], h[i])[0])
+    return np.mean(res)
 
 def compute_scores(original_csv, resultant_csv,dataset_name, dropout_eval_name):
     original_df = pd.read_csv(original_csv, header=None)
@@ -30,21 +41,16 @@ def compute_scores(original_csv, resultant_csv,dataset_name, dropout_eval_name):
 
 
     cos_similarity = np.mean(np.array(cos_list))
-    #calculate the pearsons correlation coefficient
 
 
-    #computer the mean L1 distance
-    mean_l1_error = np.mean(np.abs(original_df.values - resultant_df.values))
+    pcc = pearsonr_error(original_df.values, resultant_df.values)
 
-    # Compute Clustering Metrics
-    #ari = adjusted_rand_score(original_df.values.argmax(axis=1), resultant_df.values.argmax(axis=1))
-    #nmi = normalized_mutual_info_score(original_df.values.argmax(axis=1), resultant_df.values.argmax(axis=1))
 
     # Prepare the results in a log string
     log = f"Dataset: {dataset_name}\n"
     log += f"RMSE: {rmse}\n"
     log += f"Cosine_Similarity: {cos_similarity}\n"
-    log += f"L1_Distance: {mean_l1_error}\n"
+    log += f"PCC: {pcc}\n"
 
     save_dir = f'baseline_eval/saver/{dataset_name}/{dropout_eval_name}/{dataset_name}_results_log.txt'
     Path(save_dir).parent.mkdir(parents=True, exist_ok=True)
