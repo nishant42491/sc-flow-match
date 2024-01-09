@@ -1,3 +1,3 @@
 Dataset: quake_smart-seq2_limb_muscle
-ARI: 1.0
-NMI: 1.0
+ARI: 0.9259066894853272
+NMI: 0.9349758933692858

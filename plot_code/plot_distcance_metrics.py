@@ -84,11 +84,11 @@ def create_heatmap(baselines, dataset, metric, tasks):
 if __name__ == "__main__":
 
     if __name__ == "__main__":
-        baselines = ["magic", "drimpute", "autoclass", "gnnimpute", "alra"]
+        baselines = ["magic", "autoclass", "gnnimpute", "alra"]
         #baselines = ["magic"]
         dataset = "ziesel"
         metric = 'RMSE'
-        tasks = ['zero_two_dropout', 'zero_one_dropout', 'zero_four_dropout']
+        tasks = ['zero_one_dropout', 'zero_two_dropout', 'zero_four_dropout']
 
         for dataset in ['ziesel', 'klein']:
             for metric in ['RMSE', 'Cosine_Similarity', 'PCC']:

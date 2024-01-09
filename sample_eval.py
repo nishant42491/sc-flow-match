@@ -1,23 +1,31 @@
-import math
-import os
-
 from tqdm import tqdm
-import numpy as np
 import torch
 from torchdyn.core import NeuralODE
 from src.data.single_cell_datamodule import SingleCellDataModule
-
 from src.models.cfm_module import CFMLitModule
 from src.models.components.transformer_encoder import TransformerAutoencoder
+import os
+import pandas as pd
+from sklearn.metrics import mean_squared_error
 from pathlib import Path
+import numpy as np
+import time
 
 
-def sample_dataset_task(dataset_name, task_name, output_dir):
+
+
+
+def compute_scores(imputed, true):
+
+    rmse = np.sqrt(mean_squared_error(imputed, true))
+
+    return rmse
+
+
+def sample_dataset_task(dataset_name, task_name, num_timesteps=100):
 
 
     ckpt_path = fr"logs/train/runs/{dataset_name}/{task_name}/checkpoints/"
-    #in the ckpt_path there are two .ckpt files ones named last.ckpt. choos the file not named last.ckpt
-    #ckpt_path = os.path.join(ckpt_path, os.listdir(ckpt_path)[1])
 
     for fname in os.listdir(ckpt_path):
         if "last" not in fname:
@@ -36,7 +44,7 @@ def sample_dataset_task(dataset_name, task_name, output_dir):
                                                                        dropout=0.1))
 
     dm = SingleCellDataModule(data_dir=r"D:\Nishant\cfm_impute\flow-matching-single cell\data",
-                            batch_size=64,
+                            batch_size=2048,
                             name=dataset_name,
                             task=task_name)
 
@@ -61,7 +69,7 @@ def sample_dataset_task(dataset_name, task_name, output_dir):
             with torch.no_grad():
                 traj = node.trajectory(
                     x0,
-                    t_span=torch.linspace(0, 1, 100, device=device),
+                    t_span=torch.linspace(0, 1, num_timesteps, device=device),
                 )
 
             tr = traj[-1].detach().cpu().numpy()
@@ -77,27 +85,54 @@ def sample_dataset_task(dataset_name, task_name, output_dir):
 
     imputed[imputed < 0.1] = 0
 
-    true_save_dir = f"{output_dir}/{dataset_name}/{task_name}/og_out.csv"
-    corrupted_save_dir = f"{output_dir}/{dataset_name}/{task_name}/corrupted.csv"
-    imputed_save_dir = f"{output_dir}/{dataset_name}/{task_name}/gen_out.csv"
+    return imputed, true
 
-    Path(true_save_dir).parent.mkdir(parents=True, exist_ok=True)
-    Path(corrupted_save_dir).parent.mkdir(parents=True, exist_ok=True)
-    Path(imputed_save_dir).parent.mkdir(parents=True, exist_ok=True)
 
-    np.savetxt(true_save_dir, true, delimiter=",")
-    np.savetxt(corrupted_save_dir, corrupted, delimiter=",")
-    np.savetxt(imputed_save_dir, imputed, delimiter=",")
+def sample_time_vs_rmse(dataset_name, task_name):
+
+    delta_t_list = []
+    rmse_list = []
+    labels = []
+
+    for t in range(2, 100, 2):
+
+        start_time = time.time()
+        imputed, true = sample_dataset_task(dataset_name, task_name, t)
+        end_time = time.time()
+        delta_time = end_time - start_time
+
+        err = imputed - true
+        err = np.square(err)
+        err = np.mean(err, axis=1)
+        err = np.sqrt(err)
+        rmse = np.mean(err)
+        delta_t_list.append(delta_time)
+        rmse_list.append(rmse)
+        labels.append(t)
+
+
+    return delta_t_list, rmse_list, labels
+
+
+
 
 if __name__ == "__main__":
 
-    dataset_name = ['muraro','plasschaert','romanov','tosches turtle',
-                    "young", "quake_10x_bladder","quake_10x_limb_muscle", "quake_10x_spleen",
-                    "quake_smart-seq2_diaphragm", "quake_smart-seq2_heart", "quake_smart-seq2_limb_muscle",
-                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea", "klein", "ziesel"]
-    task_name = ['zero_one_dropout','zero_two_dropout','zero_four_dropout']
-    output_dir = './outputs'
+
+    dataset_name = ['klein']
+    task_name = ['zero_four_dropout']
+
     for name in dataset_name:
         for task in task_name:
-            sample_dataset_task(name,task,output_dir)
+            delta_time, rmse, labels = sample_time_vs_rmse(name, task)
+
+
+    import matplotlib.pyplot as plt
+    plt.scatter(delta_time, rmse, c=labels, cmap='viridis')
+    plt.title('Time vs RMSE')
+
+    plt.xlabel('Time')
+    plt.ylabel('RMSE')
+    plt.show()
+
 

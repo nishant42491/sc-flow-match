@@ -1,3 +1,3 @@
 Dataset: quake_smart-seq2_diaphragm
-ARI: 0.977721255205756
-NMI: 0.9614465302515196
+ARI: 1.0
+NMI: 1.0

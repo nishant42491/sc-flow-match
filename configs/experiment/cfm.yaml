@@ -18,9 +18,10 @@ seed: 12345
 
 trainer:
   min_epochs: 1
-  max_epochs: 2500
+  max_epochs: 30
   gradient_clip_val: 0.75
   accelerator: "gpu"
+  check_val_every_n_epoch: 1
 
 
 
@@ -32,7 +33,22 @@ data:
 
 model:
   optimizer:
-    lr: 0.00003
+    lr: 0.0003
+
+  net:
+    input_dim: 2048
+    output_dim: 2048
+    embed_dim: 128
+    time_dim: 32
+    n_heads: 1
+    num_layers: 1
+    dropout: 0.1
+
+callbacks:
+  early_stopping:
+    monitor: "val/loss"
+    patience: 6
+    mode: "min"
 
 
 

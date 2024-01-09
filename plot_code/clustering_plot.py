@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     os.chdir('../')
 
-    dataset_name = "muraro"
+    dataset_name = "romanov"
     task_name = "zero_four_dropout"
 
     original_data_train = pd.read_csv(f"data/split_data/train/{dataset_name}/original/{dataset_name}.csv", header=None).values
