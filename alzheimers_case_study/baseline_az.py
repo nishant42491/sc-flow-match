@@ -69,25 +69,17 @@ def construct_gene_id_to_name_mappings(root_dir):
     return df
 
 
-def load_baseline_anndata(task_name, test, dataset_name, baseline_name):
-
-    if not test:
-        alz_path = rf'baseline_outputs/{baseline_name}/{dataset_name}/{task_name}/{dataset_name}_imputed.csv'
-        cell_names_path = rf'data/split_data/train/{dataset_name}/original/{dataset_name}_cell_names.csv'
-        cell_types_path = rf'data/split_data/train/{dataset_name}/original/{dataset_name}_cell_types.csv'
-        gene_names_path = rf'data/split_data/train/{dataset_name}/original/{dataset_name}_gene_names.csv'
-        labels_path = rf'data/split_data/train/{dataset_name}/original/labels/{dataset_name}_labels.csv'
-
-    else:
-        alz_path = rf'outputs/{dataset_name}/{task_name}/gen_out.csv'
-        #alz_path = rf'data/split_data/test/alzheimer/{task_name}/alzheimer.csv'
-        cell_names_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_cell_names.csv'
-        cell_types_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_cell_types.csv'
-        gene_names_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_gene_names.csv'
-        labels_path = rf'data/split_data/test/{dataset_name}/original/labels/{dataset_name}_labels.csv'
+def load_baseline_anndata(task_name,  dataset_name, baseline_name):
 
 
-    alz_data = pd.read_csv(alz_path, header=None).values
+    alz_path = rf'baseline_outputs/{baseline_name}/{dataset_name}/{task_name}/{dataset_name}_imputed.csv'
+    cell_names_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_cell_names.csv'
+    cell_types_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_cell_types.csv'
+    gene_names_path = rf'data/split_data/test/{dataset_name}/original/{dataset_name}_gene_names.csv'
+    labels_path = rf'data/split_data/test/{dataset_name}/original/labels/{dataset_name}_labels.csv'
+
+
+    alz_data = pd.read_csv(alz_path).values
     cell_names = pd.read_csv(cell_names_path, header=None).values
     cell_types = pd.read_csv(cell_types_path, header=None).values
     gene_names = pd.read_csv(gene_names_path, header=None).values
@@ -140,8 +132,8 @@ if __name__ == '__main__':
     cur_var_names = cur_var_names[~cur_var_names.index.duplicated(keep='first')]
     ad_og_test.var_names = cur_var_names.values.flatten()
 
-    ad_zero_four_test = make_anndata('zero_two_dropout', True, False)
-    #ad_zero_four_test = load_baseline_anndata('zero_four_dropout', True, 'alzheimer', 'alra')
+    #ad_zero_four_test = make_anndata('zero_two_dropout', True, False)
+    ad_zero_four_test = load_baseline_anndata('zero_four_dropout', 'alzheimer', 'alra')
     ad_zero_four_test.var_names = cur_var_names.values.flatten()
 
     #0-1 normalise both the anndata objects
@@ -151,12 +143,12 @@ if __name__ == '__main__':
 
 
     sc.pl.dotplot(ad_og_test, mk_genes, groupby="cell_type", vmin=-3, vmax=3,
-                  save='alz_og_dropout.png')
+                  )
     sc.pl.dotplot(ad_zero_four_test, mk_genes, groupby="cell_type",
-                  vmin=-3, vmax=3, save='alz_zero_four_dropout.png')
+                  vmin=-3, vmax=3, save='alz_zero_four_baseline_dropout.png')
 
     sc.pl.rank_genes_groups_heatmap(ad_og_test, n_genes=4, swap_axes=True,
-                                    vmin=-3, vmax=3, save='alz_og_heatmap.png')
+                                    vmin=-3, vmax=3)
     sc.pl.rank_genes_groups_heatmap(ad_zero_four_test, n_genes=4, swap_axes=True,
-                                    vmin=-3, vmax=3, save='alz_zero_four_heatmap.png')
+                                    vmin=-3, vmax=3, save='alz_zero_four_baseline_heatmap.png')
 
