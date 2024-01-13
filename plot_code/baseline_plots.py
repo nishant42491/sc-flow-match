@@ -95,7 +95,8 @@ if __name__ == "__main__":
                 "quake_smart-seq2_heart",
                 "quake_smart-seq2_limb_muscle",
                 "quake_smart-seq2_lung",
-                "quake_smart-seq2_trachea"]
+                "quake_smart-seq2_trachea",
+                "alzheimer"]
     metric = 'ARI'
     task = 'zero_four_dropout'
 

@@ -50,7 +50,7 @@ if __name__ == '__main__':
     )
 
     #plt.savefig at plots/clustering/tsne_original.png
-    plt.savefig(f'plots/clustering/tsne_original.png')
+    plt.savefig(f'plots/clustering/tsne_original_{dataset_name}.png')
 
     #create TSNE plot for generated data
     tsne = TSNE(n_components=2, random_state=0)
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     )
 
     #plt.savefig at plots/clustering/tsne_generated.png
-    plt.savefig(f'plots/clustering/tsne_generated.png')
+    plt.savefig(f'plots/clustering/tsne_generated_{dataset_name}.png')
 
     #create tsne plots for baselines
     tsne = TSNE(n_components=2, random_state=0)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         alpha=0.3
     )
 
-    plt.savefig(f'plots/clustering/tsne_baseline_magic.png')
+    plt.savefig(f'plots/clustering/tsne_baseline_magic_{dataset_name}.png')
 
     tsne = TSNE(n_components=2, random_state=0)
     tsne_obj= tsne.fit_transform(baeline_alra)
@@ -107,7 +107,7 @@ if __name__ == '__main__':
         legend="full",
         alpha=0.3
     )
-    plt.savefig(f'plots/clustering/tsne_baseline_alra.png')
+    plt.savefig(f'plots/clustering/tsne_baseline_alra_{dataset_name}.png')
 
     tsne = TSNE(n_components=2, random_state=0)
     tsne_obj= tsne.fit_transform(baseline_gnnimpute)
@@ -123,7 +123,7 @@ if __name__ == '__main__':
         legend="full",
         alpha=0.3
     )
-    plt.savefig(f'plots/clustering/tsne_baseline_gnnimpute.png')
+    plt.savefig(f'plots/clustering/tsne_baseline_gnnimpute_{dataset_name}.png')
 
     tsne = TSNE(n_components=2, random_state=0)
     tsne_obj= tsne.fit_transform(baseline_drimpute)
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         legend="full",
         alpha=0.3
     )
-    plt.savefig(f'plots/clustering/tsne_baseline_drimpute.png')
+    plt.savefig(f'plots/clustering/tsne_baseline_drimpute_{dataset_name}.png')
 
     tsne = TSNE(n_components=2, random_state=0)
     tsne_obj= tsne.fit_transform(baseline_autoclass)
@@ -155,7 +155,7 @@ if __name__ == '__main__':
         legend="full",
         alpha=0.3
     )
-    plt.savefig(f'plots/clustering/tsne_baseline_autoclass.png')
+    plt.savefig(f'plots/clustering/tsne_baseline_autoclass_{dataset_name}.png')
 
 
 

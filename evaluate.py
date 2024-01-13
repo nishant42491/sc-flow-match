@@ -71,11 +71,12 @@ def evaluate_clusters(original_csv, resultant_csv,dataset_name, dropout_eval_nam
 
     kmeans = KMeans(n_clusters=num_unique_labels, random_state=42).fit(original_df.values)
     original_labels = kmeans.labels_
-
     resultant_labels = kmeans.predict(resultant_df.values)
 
     ari = adjusted_rand_score(original_labels, resultant_labels)
     nmi = normalized_mutual_info_score(original_labels, resultant_labels)
+
+
 
     log = f"Dataset: {dataset_name}\n"
     log += f"ARI: {ari}\n"
@@ -99,12 +100,12 @@ if __name__ == "__main__":
         for dropout_eval in dropout_eval_name:
             og_csv = f'outputs/{dataset}/{dropout_eval}/og_out.csv'
             gen_out = f'outputs/{dataset}/{dropout_eval}/gen_out.csv'
-            compute_scores(og_csv, gen_out, dataset, dropout_eval)
+            #compute_scores(og_csv, gen_out, dataset, dropout_eval)
 
     dataset_name = ['muraro','plasschaert','romanov','tosches turtle',
                     "young", "quake_10x_bladder","quake_10x_limb_muscle", "quake_10x_spleen",
                     "quake_smart-seq2_diaphragm", "quake_smart-seq2_heart", "quake_smart-seq2_limb_muscle",
-                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea"]
+                    "quake_smart-seq2_lung", "quake_smart-seq2_trachea", "alzheimer"]
 
     dropout_eval_name = ['zero_four_dropout', 'zero_two_dropout', 'zero_one_dropout']
 
