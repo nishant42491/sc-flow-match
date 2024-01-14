@@ -6,6 +6,9 @@ from anndata import concat
 import pathlib
 import anndata
 import scanpy as sc
+import gseapy as gp
+from gseapy import barplot, dotplot
+import matplotlib.pyplot as plt
 
 
 def make_anndata(task_name, test, original):
@@ -140,7 +143,7 @@ if __name__ == '__main__':
     cur_var_names = cur_var_names[~cur_var_names.index.duplicated(keep='first')]
     ad_og_test.var_names = cur_var_names.values.flatten()
 
-    ad_zero_four_test = make_anndata('zero_two_dropout', True, False)
+    ad_zero_four_test = make_anndata('zero_one_dropout', True, False)
     #ad_zero_four_test = load_baseline_anndata('zero_four_dropout', True, 'alzheimer', 'alra')
     ad_zero_four_test.var_names = cur_var_names.values.flatten()
 
@@ -150,7 +153,7 @@ if __name__ == '__main__':
     ad_zero_four_test.uns = ad_og_test.uns
 
 
-    sc.pl.dotplot(ad_og_test, mk_genes, groupby="cell_type", vmin=-3, vmax=3,
+    '''sc.pl.dotplot(ad_og_test, mk_genes, groupby="cell_type", vmin=-3, vmax=3,
                   save='alz_og_dropout.png')
     sc.pl.dotplot(ad_zero_four_test, mk_genes, groupby="cell_type",
                   vmin=-3, vmax=3, save='alz_zero_four_dropout.png')
@@ -159,4 +162,14 @@ if __name__ == '__main__':
                                     vmin=-3, vmax=3, save='alz_og_heatmap.png')
     sc.pl.rank_genes_groups_heatmap(ad_zero_four_test, n_genes=4, swap_axes=True,
                                     vmin=-3, vmax=3, save='alz_zero_four_heatmap.png')
+    '''
 
+    #plot umap plots for both the anndata objects
+
+    '''sc.pp.neighbors(ad_og_test, n_neighbors=20, n_pcs=10)
+    sc.tl.umap(ad_og_test)
+    sc.pl.umap(ad_og_test, color=['cell_type', 'labels'], save='alz_og_umap.png')
+
+    sc.pp.neighbors(ad_zero_four_test, n_neighbors=20, n_pcs=10)
+    sc.tl.umap(ad_zero_four_test)
+    sc.pl.umap(ad_zero_four_test, color=['cell_type', 'labels'], save='alz_zero_four_umap.png')'''
