@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 "quake_smart-seq2_lung",
                 "quake_smart-seq2_trachea",
                 "alzheimer"]
-    metric = 'ARI'
+    metric = 'NMI'
     task = 'zero_four_dropout'
 
     create_heatmap(baselines, datasets, metric, task)
