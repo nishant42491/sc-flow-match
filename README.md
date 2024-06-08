@@ -14,6 +14,20 @@ data/split_data/test/{dataset_name}/zero_four_dropout<br>
 
 In the data/split_data/train/{dataset_name}/original it should contain a {dataset_name}.csv and a labels directory with {dataset_name}_labels.csv file in it.
 
+In the data/split_data/train/{dataset_name}/zero_{percantage}_dropout folder should contain a {dataset_name}.csv and a masks directory with {dataset_name}.npy mask file which ahs been applied to the data to simulate dropout effect.
+
+A sample structure is present in the data folder.
+
+<br>
+
+3> Run the scrits/new_schedule.sh with the required task name and dataset name. Trained weights should be in the logs folder.
+
+4> Run the sample.py file by making the neccesary changes in the sample.py file to load the model and run the imputation on the test data.
+
+5> The results will be saved in the eval_output folder for the clustering and imputation results.
+
+Plotting functionalities are available in the plot_code folder.
+
 
 
 
