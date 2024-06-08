@@ -18,6 +18,8 @@ In the data/split_data/train/{dataset_name}/zero_{percantage}_dropout folder sho
 
 A sample structure is present in the data folder.
 
+NOTE: All csv files should have no column headers and row indexes. The cells are rows and genes are columns.
+
 <br>
 
 3> Run the scrits/new_schedule.sh with the required task name and dataset name. Trained weights should be in the logs folder.
